@@ -21,13 +21,15 @@
 
 	<!-- Initialize scripts. -->
 	<script type="text/javascript" src="vendor/angular-1.2.16.min.js"></script>
-	<script type="text/javascript" src="../build/httpi.min.js"></script>
+	<script type="text/javascript" src="../lib/httpi.js"></script>
 	<script type="text/javascript">
 
 		// Define the module for our AngularJS application.
 		var app = angular.module( "Demo", [ "httpi" ] );
 
-		
+		app.run(function(httpi){
+			httpi.setBaseUrl('http://dev-octopus.fifatms.net/');
+		});
 		// -------------------------------------------------- //
 		// -------------------------------------------------- //
 
@@ -45,6 +47,7 @@
 				// --
 				// api/friends/( :listCommand | :id/:itemCommand )
 				// api/friends/:listCommand:id/:itemCommand
+
 				var resource = httpi.resource( "api/friends/( :listCommand | :id/:itemCommand )" );
 
 				// Clear list of friends - matching listCommand.
